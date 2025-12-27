@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monthly Gift Check-in</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 18px; background: #f6f6f7; }
+    .card { max-width: 760px; margin: 0 auto; background: white; border-radius: 14px; padding: 18px; box-shadow: 0 6px 18px rgba(0,0,0,.06); }
+    h1 { font-size: 20px; margin: 0 0 10px; }
+    p { margin: 0 0 14px; color: #333; }
+    label { display: block; font-weight: 600; margin: 14px 0 6px; }
+    input, textarea, select { width: 100%; font-size: 16px; padding: 10px 12px; border: 1px solid #d6d6da; border-radius: 10px; box-sizing: border-box; }
+    textarea { min-height: 84px; resize: vertical; }
+    .row { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 640px) { .row-3 { grid-template-columns: 1fr 1fr 1fr; } }
+    .btn { margin-top: 16px; width: 100%; padding: 12px 14px; font-size: 16px; border: 0; border-radius: 12px; background: #007aff; color: white; font-weight: 700; }
+    .hint { font-size: 12px; color: #666; margin-top: 8px; }
+    .small { font-size: 13px; color: #555; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Monthly Gift Check-in 🎁</h1>
+    <p class="small">Fill out what you want. You can skip anything. Tap Submit to send it to Luis.</p>
+
+    <label for="name">Your name</label>
+    <input id="name" type="text" placeholder="e.g., Alex" required />
+
+    <label for="wants">1) Anything you’ve been wanting lately?</label>
+    <textarea id="wants" placeholder="Example: Air fryer, new hoodie, earbuds..."></textarea>
+
+    <label for="hobbies">2) Any new hobbies or interests?</label>
+    <textarea id="hobbies" placeholder="Example: Running, cooking, painting..."></textarea>
+
+    <label for="sawLiked">3) Something you saw recently and liked?</label>
+    <textarea id="sawLiked" placeholder="Example: A specific item, brand, or link..."></textarea>
+
+    <label for="experiences">4) Any experiences you’d enjoy? (food, trips, activities)</label>
+    <textarea id="experiences" placeholder="Example: Sushi night, concert, spa, class..."></textarea>
+
+    <label for="practical">5) Anything practical you need or want upgraded?</label>
+    <textarea id="practical" placeholder="Example: Phone charger, kitchen knife, backpack..."></textarea>
+
+    <label>6) Size updates (optional)</label>
+    <div class="row row-3">
+      <div>
+        <input id="shirt" type="text" placeholder="Shirt (e.g., M)" />
+      </div>
+      <div>
+        <input id="pants" type="text" placeholder="Pants (e.g., 32x30)" />
+      </div>
+      <div>
+        <input id="shoe" type="text" placeholder="Shoe (e.g., 10.5)" />
+      </div>
+    </div>
+
+    <button class="btn" id="submitBtn">Submit (Send to Luis)</button>
+    <div class="hint">This opens your email app with a pre-filled message. Just hit Send.</div>
+  </div>
+
+  <script>
+    const TO_EMAIL = "Jimenez.luis562@yahoo.com"; // <-- replace this
+
+    function monthYearString(d = new Date()) {
+      const month = d.toLocaleString(undefined, { month: "long" });
+      return `${month} ${d.getFullYear()}`;
+    }
+
+    function clean(v) {
+      return (v || "").trim();
+    }
+
+    function buildEmailBody(data) {
+      const lines = [];
+      lines.push(`Monthly Gift Check-in`);
+      lines.push(`Month: ${monthYearString()}`);
+      lines.push(`Name: ${data.name}`);
+      lines.push("");
+      lines.push(`1) Wants lately: ${data.wants || "-"}`);
+      lines.push(`2) New hobbies/interests: ${data.hobbies || "-"}`);
+      lines.push(`3) Saw and liked: ${data.sawLiked || "-"}`);
+      lines.push(`4) Experiences: ${data.experiences || "-"}`);
+      lines.push(`5) Practical upgrade: ${data.practical || "-"}`);
+      lines.push("");
+      lines.push(`Sizes:`);
+      lines.push(`- Shirt: ${data.shirt || "-"}`);
+      lines.push(`- Pants: ${data.pants || "-"}`);
+      lines.push(`- Shoe: ${data.shoe || "-"}`);
+      return lines.join("\n");
+    }
+
+    document.getElementById("submitBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const data = {
+        name: clean(document.getElementById("name").value),
+        wants: clean(document.getElementById("wants").value),
+        hobbies: clean(document.getElementById("hobbies").value),
+        sawLiked: clean(document.getElementById("sawLiked").value),
+        experiences: clean(document.getElementById("experiences").value),
+        practical: clean(document.getElementById("practical").value),
+        shirt: clean(document.getElementById("shirt").value),
+        pants: clean(document.getElementById("pants").value),
+        shoe: clean(document.getElementById("shoe").value),
+      };
+
+      if (!data.name) {
+        alert("Please enter your name.");
+        return;
+      }
+
+      const subject = encodeURIComponent(`Gift Check-in – ${data.name} – ${monthYearString()}`);
+      const body = encodeURIComponent(buildEmailBody(data));
+
+      // Opens the user’s email app with a pre-filled message
+      window.location.href = `mailto:${encodeURIComponent(TO_EMAIL)}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>

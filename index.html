@@ -116,6 +116,8 @@
     document.getElementById("submitBtn").addEventListener("click", (e) => {
       e.preventDefault();
 
+      const submissionId = new Date().toISOString(); // unique ID
+
       const data = {
         name: clean(document.getElementById("name").value),
         wants: clean(document.getElementById("wants").value),
@@ -128,8 +130,6 @@
         shoe: clean(document.getElementById("shoe").value),
         submissionId: submissionId,
       };
-
-      const submissionId = new Date().toISOString(); // unique ID
 
       if (!data.name) {
         alert("Please enter your name.");

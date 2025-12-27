@@ -3,9 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Cache helpers (still use ?v= when updating) -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
   <title>Monthly Gift Check-in</title>
   <style>
     body { font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 18px; background: #f6f6f7; }
@@ -13,154 +16,166 @@
     h1 { font-size: 20px; margin: 0 0 10px; }
     p { margin: 0 0 14px; color: #333; }
     label { display: block; font-weight: 600; margin: 14px 0 6px; }
-    input, textarea, select { width: 100%; font-size: 16px; padding: 10px 12px; border: 1px solid #d6d6da; border-radius: 10px; box-sizing: border-box; }
-    textarea { min-height: 84px; resize: vertical; }
+    input, select { width: 100%; font-size: 16px; padding: 10px 12px; border: 1px solid #d6d6da; border-radius: 10px; box-sizing: border-box; }
     .row { display: grid; grid-template-columns: 1fr; gap: 12px; }
     @media (min-width: 640px) { .row-3 { grid-template-columns: 1fr 1fr 1fr; } }
     .btn { margin-top: 16px; width: 100%; padding: 12px 14px; font-size: 16px; border: 0; border-radius: 12px; background: #007aff; color: white; font-weight: 700; }
     .hint { font-size: 12px; color: #666; margin-top: 8px; }
-    .small { font-size: 13px; color: #555; }
+    .small { font-size: 13px; color: #555; font-weight: 500; }
   </style>
 </head>
+
 <body>
   <div class="card">
     <h1>Monthly Gift Check-in 🎁</h1>
     <p class="small">Fill out what you want. You can skip anything. Tap Submit to send it to Luis.</p>
 
-<label for="name">Your name</label>
-<select id="name" required>
-  <option value="" selected disabled>Select your name…</option>
-  <option>Christian</option>
-  <option>Elvira</option>
-  <option>Fernando</option>
-  <option>Guero</option>
-  <option>Isaiah</option>
-  <option>Jaylah</option>
-  <option>Jocelyn</option>
-  <option>Juan</option>
-  <option>Kevin</option>
-  <option>Luis</option>
-  <option>Marsela</option>
-  <option>Patty</option>
-  <option>Susan</option>
-  <option>Viridiana</option>
-  <option>Vivian</option>
-  <option>Xzavier</option>
-</select>
-<p class="hint">If your name isn’t listed, text Luis to add it.</p>
+    <label for="name">Your name</label>
+    <select id="name" required>
+      <option value="" selected disabled>Select your name…</option>
+      <option>Christian</option>
+      <option>Elvira</option>
+      <option>Fernando</option>
+      <option>Guero</option>
+      <option>Isaiah</option>
+      <option>Jaylah</option>
+      <option>Jocelyn</option>
+      <option>Juan</option>
+      <option>Kevin</option>
+      <option>Luis</option>
+      <option>Marsela</option>
+      <option>Patty</option>
+      <option>Susan</option>
+      <option>Viridiana</option>
+      <option>Vivian</option>
+      <option>Xzavier</option>
+    </select>
+    <p class="hint">If your name isn’t listed, text Luis to add it.</p>
 
-<label>
-  Favorite Things (up to 10)
-  <span class="small">Cosas favoritas (hasta 10)</span>
-</label>
-<p class="small">Items, brands, gadgets, toys, games, snacks, anything. Not required.</p>
+    <label>
+      Favorite Things (up to 10)
+      <span class="small">Cosas favoritas (hasta 10)</span>
+    </label>
+    <p class="small">Items, brands, gadgets, toys, games, snacks, anything. Not required.</p>
 
-<div class="row">
-  <input id="fav1" type="text" placeholder="1) Favorite thing / Cosa favorita" />
-  <input id="fav2" type="text" placeholder="2) Favorite thing / Cosa favorita" />
-  <input id="fav3" type="text" placeholder="3) Favorite thing / Cosa favorita" />
-  <input id="fav4" type="text" placeholder="4) Favorite thing / Cosa favorita" />
-  <input id="fav5" type="text" placeholder="5) Favorite thing / Cosa favorita" />
-  <input id="fav6" type="text" placeholder="6) Favorite thing / Cosa favorita" />
-  <input id="fav7" type="text" placeholder="7) Favorite thing / Cosa favorita" />
-  <input id="fav8" type="text" placeholder="8) Favorite thing / Cosa favorita" />
-  <input id="fav9" type="text" placeholder="9) Favorite thing / Cosa favorita" />
-  <input id="fav10" type="text" placeholder="10) Favorite thing / Cosa favorita" />
-</div>
+    <div class="row">
+      <input id="fav1" type="text" placeholder="1) Favorite thing / Cosa favorita" />
+      <input id="fav2" type="text" placeholder="2) Favorite thing / Cosa favorita" />
+      <input id="fav3" type="text" placeholder="3) Favorite thing / Cosa favorita" />
+      <input id="fav4" type="text" placeholder="4) Favorite thing / Cosa favorita" />
+      <input id="fav5" type="text" placeholder="5) Favorite thing / Cosa favorita" />
+      <input id="fav6" type="text" placeholder="6) Favorite thing / Cosa favorita" />
+      <input id="fav7" type="text" placeholder="7) Favorite thing / Cosa favorita" />
+      <input id="fav8" type="text" placeholder="8) Favorite thing / Cosa favorita" />
+      <input id="fav9" type="text" placeholder="9) Favorite thing / Cosa favorita" />
+      <input id="fav10" type="text" placeholder="10) Favorite thing / Cosa favorita" />
+    </div>
+
+    <label>
+      Size updates (optional)
+      <span class="small">Actualización de tallas (opcional)</span>
+    </label>
+    <div class="row row-3">
+      <div>
+        <input id="shirt" type="text" placeholder="Shirt (e.g., M) / Camisa (ej. M)" />
+      </div>
+      <div>
+        <input id="pants" type="text" placeholder="Pants (e.g., 32x30) / Pantalón (ej. 32x30)" />
+      </div>
+      <div>
+        <input id="shoe" type="text" placeholder="Shoe (e.g., 10.5) / Zapatos (ej. 10.5)" />
+      </div>
+    </div>
+
     <button class="btn" id="submitBtn">Submit (Send to Luis)</button>
     <div class="hint">This opens your email app with a pre-filled message. Just hit Send.</div>
   </div>
 
- <script>
-  const TO_EMAIL = "Jimenez.luis562@yahoo.com";
+  <script>
+    const TO_EMAIL = "Jimenez.luis562@yahoo.com";
 
-  function monthYearString(d = new Date()) {
-    const month = d.toLocaleString(undefined, { month: "long" });
-    return `${month} ${d.getFullYear()}`;
-  }
-
-  function clean(v) {
-    return (v || "").trim();
-  }
-
-  function buildEmailBody(data) {
-    const lines = [];
-    lines.push(`Monthly Gift Check-in`);
-    lines.push(`Month: ${monthYearString()}`);
-    lines.push(`Name: ${data.name}`);
-    lines.push(`Submission-ID: ${data.submissionId}`);
-    lines.push("");
-
-    // Favorite Things block (easy for AppleScript + easy to read)
-    lines.push(`Favorite Things:`);
-    const favs = (data.favorites || []).filter(Boolean);
-    if (favs.length === 0) {
-      lines.push(`- -`);
-    } else {
-      favs.forEach((f) => lines.push(`- ${f}`));
+    function monthYearString(d = new Date()) {
+      const month = d.toLocaleString(undefined, { month: "long" });
+      return `${month} ${d.getFullYear()}`;
     }
 
-    lines.push("");
-    lines.push(`Sizes:`);
-    lines.push(`- Shirt: ${data.shirt || "-"}`);
-    lines.push(`- Pants: ${data.pants || "-"}`);
-    lines.push(`- Shoe: ${data.shoe || "-"}`);
-
-    return lines.join("\n");
-  }
-
-  document.getElementById("submitBtn").addEventListener("click", (e) => {
-    e.preventDefault();
-
-    const submissionId = new Date().toISOString();
-
-    const data = {
-      name: clean(document.getElementById("name").value),
-
-      favorites: [
-        clean(document.getElementById("fav1")?.value),
-        clean(document.getElementById("fav2")?.value),
-        clean(document.getElementById("fav3")?.value),
-        clean(document.getElementById("fav4")?.value),
-        clean(document.getElementById("fav5")?.value),
-        clean(document.getElementById("fav6")?.value),
-        clean(document.getElementById("fav7")?.value),
-        clean(document.getElementById("fav8")?.value),
-        clean(document.getElementById("fav9")?.value),
-        clean(document.getElementById("fav10")?.value),
-      ],
-
-      shirt: clean(document.getElementById("shirt").value),
-      pants: clean(document.getElementById("pants").value),
-      shoe: clean(document.getElementById("shoe").value),
-
-      submissionId: submissionId,
-    };
-
-    if (!data.name) {
-      alert("Please select your name.");
-      return;
+    function clean(v) {
+      return (v || "").trim();
     }
 
-    // Optional confirmation to prevent wrong-person submits
-    if (!confirm(`You are about to submit this check-in for: ${data.name}\n\nTap OK to continue.`)) {
-      return;
+    function buildEmailBody(data) {
+      const lines = [];
+      lines.push(`Monthly Gift Check-in`);
+      lines.push(`Month: ${monthYearString()}`);
+      lines.push(`Name: ${data.name}`);
+      lines.push(`Submission-ID: ${data.submissionId}`);
+      lines.push("");
+
+      lines.push(`Favorite Things:`);
+      const favs = (data.favorites || []).filter(Boolean);
+      if (favs.length === 0) {
+        lines.push(`- -`);
+      } else {
+        favs.forEach((f) => lines.push(`- ${f}`));
+      }
+
+      lines.push("");
+      lines.push(`Sizes:`);
+      lines.push(`- Shirt: ${data.shirt || "-"}`);
+      lines.push(`- Pants: ${data.pants || "-"}`);
+      lines.push(`- Shoe: ${data.shoe || "-"}`);
+
+      return lines.join("\n");
     }
 
-    const subject = encodeURIComponent(`Gift Check-in – ${data.name} – ${monthYearString()} – ${submissionId}`);
-    const body = encodeURIComponent(buildEmailBody(data));
+    document.getElementById("submitBtn").addEventListener("click", (e) => {
+      e.preventDefault();
 
-    // Clear the form so the next person starts fresh
-    setTimeout(() => {
-      document.getElementById("name").selectedIndex = 0;
-      ["fav1","fav2","fav3","fav4","fav5","fav6","fav7","fav8","fav9","fav10","shirt","pants","shoe"].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.value = "";
-      });
-    }, 200);
+      const submissionId = new Date().toISOString();
 
-    window.location.href = `mailto:${encodeURIComponent(TO_EMAIL)}?subject=${subject}&body=${body}`;
-  });
-</script>
+      const data = {
+        name: clean(document.getElementById("name").value),
+        favorites: [
+          clean(document.getElementById("fav1").value),
+          clean(document.getElementById("fav2").value),
+          clean(document.getElementById("fav3").value),
+          clean(document.getElementById("fav4").value),
+          clean(document.getElementById("fav5").value),
+          clean(document.getElementById("fav6").value),
+          clean(document.getElementById("fav7").value),
+          clean(document.getElementById("fav8").value),
+          clean(document.getElementById("fav9").value),
+          clean(document.getElementById("fav10").value),
+        ],
+        shirt: clean(document.getElementById("shirt").value),
+        pants: clean(document.getElementById("pants").value),
+        shoe: clean(document.getElementById("shoe").value),
+        submissionId: submissionId,
+      };
+
+      if (!data.name) {
+        alert("Please select your name.");
+        return;
+      }
+
+      if (!confirm(`You are about to submit this check-in for: ${data.name}\n\nTap OK to continue.`)) {
+        return;
+      }
+
+      const subject = encodeURIComponent(`Gift Check-in – ${data.name} – ${monthYearString()} – ${submissionId}`);
+      const body = encodeURIComponent(buildEmailBody(data));
+
+      // Clear the form so the next person starts fresh
+      setTimeout(() => {
+        document.getElementById("name").selectedIndex = 0;
+        ["fav1","fav2","fav3","fav4","fav5","fav6","fav7","fav8","fav9","fav10","shirt","pants","shoe"].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.value = "";
+        });
+      }, 200);
+
+      window.location.href = `mailto:${encodeURIComponent(TO_EMAIL)}?subject=${subject}&body=${body}`;
+    });
+  </script>
 </body>
 </html>

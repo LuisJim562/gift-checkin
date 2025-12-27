@@ -135,6 +135,15 @@
       const subject = encodeURIComponent(`Gift Check-in – ${data.name} – ${monthYearString()}`);
       const body = encodeURIComponent(buildEmailBody(data));
 
+      // optional: force-clear the form so the next submission starts clean
+setTimeout(() => {
+  document.getElementById("name").selectedIndex = 0;
+  ["wants","hobbies","sawLiked","experiences","practical","shirt","pants","shoe"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+}, 200);
+
       // Opens the user’s email app with a pre-filled message
       window.location.href = `mailto:${encodeURIComponent(TO_EMAIL)}?subject=${subject}&body=${body}`;
     });

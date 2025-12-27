@@ -71,76 +71,96 @@
     <div class="hint">This opens your email app with a pre-filled message. Just hit Send.</div>
   </div>
 
-  <script>
-    const TO_EMAIL = "Jimenez.luis562@yahoo.com"; // <-- replace this
+ <script>
+  const TO_EMAIL = "Jimenez.luis562@yahoo.com";
 
-    function monthYearString(d = new Date()) {
-      const month = d.toLocaleString(undefined, { month: "long" });
-      return `${month} ${d.getFullYear()}`;
+  function monthYearString(d = new Date()) {
+    const month = d.toLocaleString(undefined, { month: "long" });
+    return `${month} ${d.getFullYear()}`;
+  }
+
+  function clean(v) {
+    return (v || "").trim();
+  }
+
+  function buildEmailBody(data) {
+    const lines = [];
+    lines.push(`Monthly Gift Check-in`);
+    lines.push(`Month: ${monthYearString()}`);
+    lines.push(`Name: ${data.name}`);
+    lines.push(`Submission-ID: ${data.submissionId}`);
+    lines.push("");
+
+    // Favorite Things block (easy for AppleScript + easy to read)
+    lines.push(`Favorite Things:`);
+    const favs = (data.favorites || []).filter(Boolean);
+    if (favs.length === 0) {
+      lines.push(`- -`);
+    } else {
+      favs.forEach((f) => lines.push(`- ${f}`));
     }
 
-    function clean(v) {
-      return (v || "").trim();
+    lines.push("");
+    lines.push(`Sizes:`);
+    lines.push(`- Shirt: ${data.shirt || "-"}`);
+    lines.push(`- Pants: ${data.pants || "-"}`);
+    lines.push(`- Shoe: ${data.shoe || "-"}`);
+
+    return lines.join("\n");
+  }
+
+  document.getElementById("submitBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const submissionId = new Date().toISOString();
+
+    const data = {
+      name: clean(document.getElementById("name").value),
+
+      favorites: [
+        clean(document.getElementById("fav1")?.value),
+        clean(document.getElementById("fav2")?.value),
+        clean(document.getElementById("fav3")?.value),
+        clean(document.getElementById("fav4")?.value),
+        clean(document.getElementById("fav5")?.value),
+        clean(document.getElementById("fav6")?.value),
+        clean(document.getElementById("fav7")?.value),
+        clean(document.getElementById("fav8")?.value),
+        clean(document.getElementById("fav9")?.value),
+        clean(document.getElementById("fav10")?.value),
+      ],
+
+      shirt: clean(document.getElementById("shirt").value),
+      pants: clean(document.getElementById("pants").value),
+      shoe: clean(document.getElementById("shoe").value),
+
+      submissionId: submissionId,
+    };
+
+    if (!data.name) {
+      alert("Please select your name.");
+      return;
     }
 
-    function buildEmailBody(data) {
-      const lines = [];
-      lines.push(`Monthly Gift Check-in`);
-      lines.push(`Month: ${monthYearString()}`);
-      lines.push(`Name: ${data.name}`);
-      lines.push(`Submission-ID: ${data.submissionId}`);
-      lines.push("");
-      lines.push(`1) Wants lately: ${data.wants || "-"}`);
-      lines.push(`2) New hobbies/interests: ${data.hobbies || "-"}`);
-      lines.push(`3) Saw and liked: ${data.sawLiked || "-"}`);
-      lines.push(`4) Experiences: ${data.experiences || "-"}`);
-      lines.push(`5) Practical upgrade: ${data.practical || "-"}`);
-      lines.push("");
-      lines.push(`Sizes:`);
-      lines.push(`- Shirt: ${data.shirt || "-"}`);
-      lines.push(`- Pants: ${data.pants || "-"}`);
-      lines.push(`- Shoe: ${data.shoe || "-"}`);
-      return lines.join("\n");
+    // Optional confirmation to prevent wrong-person submits
+    if (!confirm(`You are about to submit this check-in for: ${data.name}\n\nTap OK to continue.`)) {
+      return;
     }
 
-    document.getElementById("submitBtn").addEventListener("click", (e) => {
-      e.preventDefault();
+    const subject = encodeURIComponent(`Gift Check-in – ${data.name} – ${monthYearString()} – ${submissionId}`);
+    const body = encodeURIComponent(buildEmailBody(data));
 
-      const submissionId = new Date().toISOString(); // unique ID
+    // Clear the form so the next person starts fresh
+    setTimeout(() => {
+      document.getElementById("name").selectedIndex = 0;
+      ["fav1","fav2","fav3","fav4","fav5","fav6","fav7","fav8","fav9","fav10","shirt","pants","shoe"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+      });
+    }, 200);
 
-      const data = {
-        name: clean(document.getElementById("name").value),
-        wants: clean(document.getElementById("wants").value),
-        hobbies: clean(document.getElementById("hobbies").value),
-        sawLiked: clean(document.getElementById("sawLiked").value),
-        experiences: clean(document.getElementById("experiences").value),
-        practical: clean(document.getElementById("practical").value),
-        shirt: clean(document.getElementById("shirt").value),
-        pants: clean(document.getElementById("pants").value),
-        shoe: clean(document.getElementById("shoe").value),
-        submissionId: submissionId,
-      };
-
-      if (!data.name) {
-        alert("Please enter your name.");
-        return;
-      }
-
-      const subject = encodeURIComponent(`Gift Check-in – ${data.name} – ${monthYearString()} – ${submissionId}`);
-      const body = encodeURIComponent(buildEmailBody(data));
-
-      // optional: force-clear the form so the next submission starts clean
-setTimeout(() => {
-  document.getElementById("name").selectedIndex = 0;
-  ["wants","hobbies","sawLiked","experiences","practical","shirt","pants","shoe"].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.value = "";
+    window.location.href = `mailto:${encodeURIComponent(TO_EMAIL)}?subject=${subject}&body=${body}`;
   });
-}, 200);
-
-      // Opens the user’s email app with a pre-filled message
-      window.location.href = `mailto:${encodeURIComponent(TO_EMAIL)}?subject=${subject}&body=${body}`;
-    });
-  </script>
+</script>
 </body>
 </html>

@@ -49,33 +49,61 @@
 </select>
 <p class="hint">If your name isn’t listed, text Luis to add it.</p>
 
-    <label for="wants">1) Anything you’ve been wanting lately?</label>
-    <textarea id="wants" placeholder="Example: Air fryer, new hoodie, earbuds..."></textarea>
+<label for="wants">
+  1) Anything you’ve been wanting lately?
+  <span class="small">¿Algo que hayas querido últimamente?</span>
+</label>
+<textarea id="wants"
+  placeholder="Example: Air fryer, new hoodie, earbuds… / Ejemplo: freidora de aire, sudadera nueva, audífonos…">
+</textarea>
 
-    <label for="hobbies">2) Any new hobbies or interests?</label>
-    <textarea id="hobbies" placeholder="Example: Running, cooking, painting..."></textarea>
+<label for="hobbies">
+  2) Any new hobbies or interests?
+  <span class="small">¿Algún hobby o interés nuevo?</span>
+</label>
+<textarea id="hobbies"
+  placeholder="Example: Running, cooking, painting… / Ejemplo: correr, cocinar, pintar…">
+</textarea>
 
-    <label for="sawLiked">3) Something you saw recently and liked?</label>
-    <textarea id="sawLiked" placeholder="Example: A specific item, brand, or link..."></textarea>
+<label for="sawLiked">
+  3) Something you saw recently and liked?
+  <span class="small">¿Algo que viste recientemente y te gustó?</span>
+</label>
+<textarea id="sawLiked"
+  placeholder="Example: A specific item, brand, or link… / Ejemplo: un artículo, marca o enlace específico…">
+</textarea>
 
-    <label for="experiences">4) Any experiences you’d enjoy? (food, trips, activities)</label>
-    <textarea id="experiences" placeholder="Example: Sushi night, concert, spa, class..."></textarea>
+<label for="experiences">
+  4) Any experiences you’d enjoy? (food, trips, activities)
+  <span class="small">¿Alguna experiencia que te gustaría? (comida, viajes, actividades)</span>
+</label>
+<textarea id="experiences"
+  placeholder="Example: Sushi night, concert, spa, class… / Ejemplo: cena de sushi, concierto, spa, clase…">
+</textarea>
 
-    <label for="practical">5) Anything practical you need or want upgraded?</label>
-    <textarea id="practical" placeholder="Example: Phone charger, kitchen knife, backpack..."></textarea>
+<label for="practical">
+  5) Anything practical you need or want upgraded?
+  <span class="small">¿Algo práctico que necesites o quieras mejorar?</span>
+</label>
+<textarea id="practical"
+  placeholder="Example: Phone charger, kitchen knife, backpack… / Ejemplo: cargador de teléfono, cuchillo de cocina, mochila…">
+</textarea>
 
-    <label>6) Size updates (optional)</label>
-    <div class="row row-3">
-      <div>
-        <input id="shirt" type="text" placeholder="Shirt (e.g., M)" />
-      </div>
-      <div>
-        <input id="pants" type="text" placeholder="Pants (e.g., 32x30)" />
-      </div>
-      <div>
-        <input id="shoe" type="text" placeholder="Shoe (e.g., 10.5)" />
-      </div>
-    </div>
+<label>
+  6) Size updates (optional)
+  <span class="small">Actualización de tallas (opcional)</span>
+</label>
+<div class="row row-3">
+  <div>
+    <input id="shirt" type="text" placeholder="Shirt (e.g., M) / Camisa (ej. M)" />
+  </div>
+  <div>
+    <input id="pants" type="text" placeholder="Pants (e.g., 32x30) / Pantalón (ej. 32x30)" />
+  </div>
+  <div>
+    <input id="shoe" type="text" placeholder="Shoe (e.g., 10.5) / Zapatos (ej. 10.5)" />
+  </div>
+</div>
 
     <button class="btn" id="submitBtn">Submit (Send to Luis)</button>
     <div class="hint">This opens your email app with a pre-filled message. Just hit Send.</div>

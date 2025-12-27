@@ -98,6 +98,7 @@
       lines.push(`Monthly Gift Check-in`);
       lines.push(`Month: ${monthYearString()}`);
       lines.push(`Name: ${data.name}`);
+      lines.push(`Submission-ID: ${data.submissionId}`);
       lines.push("");
       lines.push(`1) Wants lately: ${data.wants || "-"}`);
       lines.push(`2) New hobbies/interests: ${data.hobbies || "-"}`);
@@ -125,14 +126,17 @@
         shirt: clean(document.getElementById("shirt").value),
         pants: clean(document.getElementById("pants").value),
         shoe: clean(document.getElementById("shoe").value),
+        submissionId: submissionId,
       };
+
+      const submissionId = new Date().toISOString(); // unique ID
 
       if (!data.name) {
         alert("Please enter your name.");
         return;
       }
 
-      const subject = encodeURIComponent(`Gift Check-in – ${data.name} – ${monthYearString()}`);
+      const subject = encodeURIComponent(`Gift Check-in – ${data.name} – ${monthYearString()} – ${submissionId}`);
       const body = encodeURIComponent(buildEmailBody(data));
 
       // optional: force-clear the form so the next submission starts clean
